@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% for ticket in tickets %}
+        <article>
+            <header>
+                <a href="index.php">
+                    <h1 class="titreTicket">{{ ticket.getTitre() }}</h1>
+                </a>
+                <time>{{ ticket.getStringDate() }}</time>
+            </header>
+            <p>{{ ticket.getContenu() }}</p>
+        </article>
+        <hr>
+    {% endfor %}
+{% endblock %}

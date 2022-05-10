@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Ticketing{% endblock %}</title>
+    </head>
+    {% apply inline_css(source("style.css")) %}
+        <body>
+            <div id="global">
+                <header>
+                    <a href="index.php"><h1 id="titreTicketing">Ticketing</h1></a>
+                    <p>Je vous souhaite la bienvenue sur cette modeste plateforme de ticketing.</p>
+                </header>
+                <div id="contenu">
+                    {% block body %}
+                    {% endblock %}
+                </div> <!-- #contenu -->
+                <footer id="piedTicketing">
+                    Plateforme réalisée avec PHP, HTML5 et CSS.
+                </footer>
+            </div>
+        </body>
+    {% endapply %}
+</html>
