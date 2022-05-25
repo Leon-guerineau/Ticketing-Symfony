@@ -1,20 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello TicketController!{% endblock %}
-
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div id="contenu">
+        <article>
+            <header>
+                <h1 class="titreTicket">{{ ticket.getTitre() }}</h1>
+                <time>{{ ticket.getStringDate() }}</time>
+            </header>
+            <p>{{ ticket.getContenu() }}</p>
+        </article>
+        <hr>
+        <header>
+            <h1 id="titreReponses">Réponses au ticket</h1>
+        </header>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        {% for commentaire in ticket.getCommentaires %}
+            <hr id="divisionCommentaire">
+            <p id="auteurCommentaire">De {{ commentaire.getAuteur }} :</p>
+            <p id="dateCommentaire">{{ commentaire.getStringDate }}</p>
+            <p>{{ commentaire.getContenu }}</p>
+        {% endfor %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/gueri/Desktop/Ticketing SP 3/ticketing/src/Controller/TicketController.php'|file_link(0) }}">src/Controller/TicketController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/gueri/Desktop/Ticketing SP 3/ticketing/templates/ticket/index.html.twig'|file_link(0) }}">templates/ticket/index.html.twig</a></code></li>
-    </ul>
-</div>
+        <hr id="divisionCommentaire">
+
+        {{ form_start(form) }}
+            {{ form_row(form.auteur) }}
+            {{ form_row(form.contenu) }}
+        <button type="submit">valider</button>
+        {{ form_end(form) }}
+
+    </div>
 {% endblock %}

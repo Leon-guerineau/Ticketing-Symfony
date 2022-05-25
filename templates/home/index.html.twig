@@ -3,7 +3,7 @@
     {% for ticket in tickets %}
         <article>
             <header>
-                <a href="index.php">
+                <a href="{{ path("ticket_show", {idTicket:ticket.id}) }}">
                     <h1 class="titreTicket">{{ ticket.getTitre() }}</h1>
                 </a>
                 <time>{{ ticket.getStringDate() }}</time>

@@ -16,22 +16,20 @@ class AppFixtures extends Fixture
 
         $arrayTickets = [];
 
-        for($i = 1; $i < $nbTickets; $i++) {
+        for ($i = 1; $i < $nbTickets; $i++) {
             $ticket = new Ticket();
             $ticket
-                ->setTitre("titre-".$i)
-                ->setDate(date_create())
-                ->setContenu("contenu-".$i);
+                ->setTitre("titre-" . $i)
+                ->setContenu("contenu-" . $i);
             $manager->persist($ticket);
-            $arrayTickets[$i]=$ticket;
+            $arrayTickets[$i] = $ticket;
         }
-        for($i = 1; $i < $nbCommentaires; $i++) {
+        for ($i = 1; $i < $nbCommentaires; $i++) {
             $commentaire = new Commentaire();
             $commentaire
-                ->setAuteur("auteur-".rand(1,3))
-                ->setDate(date_create())
-                ->setContenu("contenu-".$i)
-                ->setTicket($arrayTickets[rand(1, $nbTickets-1)]);
+                ->setAuteur("auteur-" . rand(1, 3))
+                ->setContenu("contenu-" . $i)
+                ->setTicket($arrayTickets[rand(1, $nbTickets - 1)]);
             $manager->persist($commentaire);
         }
         $manager->flush();

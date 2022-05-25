@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CommentaireRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Entity(repositoryClass: CommentaireRepository::class)]
 class Commentaire
@@ -14,6 +15,7 @@ class Commentaire
     private $id;
 
     #[ORM\Column(type: 'datetime')]
+    #[Gedmo\Timestampable(on: 'create')]
     private $date;
 
     #[ORM\Column(type: 'string', length: 100)]
@@ -33,6 +35,11 @@ class Commentaire
     public function getDate(): ?\DateTimeInterface
     {
         return $this->date;
+    }
+
+    public function getStringDate(): ?String
+    {
+        return $this->date->format('Y-m-d H:i:s');
     }
 
     public function setDate(\DateTimeInterface $date): self
